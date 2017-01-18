@@ -112,9 +112,9 @@
                     success: function (data)
                     {
                         $('#searchResults').show();
-                        outputData = outputData + "<table>";
+                        outputData = outputData + "<table style='margin: auto; text-align:center;'>";
                         for (i = 0; i < data.dataResult.length; i++) {
-                            outputData = outputData + "<tr> <td style='width:100%;' onclick='completeCustomer(\"" + data.dataResult[i].CustomerName + "\", \"" + data.dataResult[i].CustomerId + "\")' >" + data.dataResult[i].CustomerName + "</td> </tr>";
+                            outputData = outputData + "<tr> <td style='width:100%;' onclick='completeCustomer(\"" + data.dataResult[i].CustomerName + "\", \"" + data.dataResult[i].CustomerId + "\")' >" + "<p class='searchText'>" + data.dataResult[i].CustomerName + "</p>" + "</td> </tr>";
                         }
                         //alert(data.dataResult[0].CustomerName);
                         //document.location.reload();
@@ -216,6 +216,11 @@
                 margin: 0;
                 cell-padding: 0px;
             }
+            
+            .searchText {
+                text-align: center !important;
+                font-size: 14px !important;
+            }
 
         </style>
     </head>
@@ -294,7 +299,7 @@
                     <input  onkeyup="searchUpdate();"id="customerSearch" type="text"placeholder="Please enter the location of the store..."size="50">
                 </div>
 
-                <div id="searchResults" style="background-color: whitesmoke; border-radius: 2px; padding: 5px;display:none;">
+                <div id="searchResults" style="background-color: whitesmoke; text-align: center; margin: auto; border-radius: 2px; width: 250px; padding: 5px;display:none;">
 
                 </div>
 
