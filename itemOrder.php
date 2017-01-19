@@ -15,6 +15,8 @@
 
 
         <script type="text/javascript">
+            GLOBALNAME = "NOT APPLICABLE!";
+            GLOBALPRICE = 0;
 
 //            function getIdAndSubmit() {
 //                var ProductCode = '0';
@@ -57,6 +59,8 @@
                 $('#searchResults').hide();
                 $('#priceForOne').val(Cost);
                 $('#priceFor').val(Cost);
+                GLOBALNAME = ProductDescShort;
+                GLOBALPRICE = Cost;
             }
 
             function searchUpdate() {
@@ -109,6 +113,36 @@
                 //alert(quantity);
                 $('#priceForText').html("Total For " + quantity + ":");
                 $('#priceFor').val((Math.round(total * 100)) / 100);
+            }
+            
+            function addToBasket() {
+                var Quantity = $('#quantity').val();
+                GLOBALPRICE = GLOBALPRICE * Quantity;
+                var Total = GLOBALPRICE;
+                var ProductName = GLOBALNAME;
+                
+                $.ajax({
+                    url: 'ajax/ItemAjax.php',
+                    cache: false,
+                    type: 'POST',
+                    //async:false,
+                    data: {
+                        'request': 'addToBasket',
+                        'Quantity': Quantity,
+                        'Total': Total,
+                        'ProductName': ProductName,
+                    },
+                    dataType: 'json',
+                    success: function (data)
+                    {
+                        alert("Added to basket!");
+
+                    },
+                    error: function (data)
+                    {
+                        alert('error in calling ajax page');
+                    }
+                });
             }
 
 
@@ -296,7 +330,7 @@
                     <input type="text" id="priceFor" value="0.00" disabled="true" size="50">
                 </div>
                 <div style="margin:0 auto;margin-top: 35px;text-align: center;">
-                    <input type="button" id="SubmitButton" value="Add To Basket" onclick="getIdAndSubmit()">
+                    <input type="button" id="SubmitButton" value="Add To Basket" onclick="addToBasket()">
                 </div>
 
 

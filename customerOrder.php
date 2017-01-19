@@ -1,3 +1,5 @@
+ 
+
 <html>
     <head>
         <link rel='stylesheet' type='text/css' href='jQuery/jquery-ui.min.css'>
@@ -58,7 +60,7 @@
                             dataType: 'json',
                             success: function (data)
                             {
-                                location.reload();
+                                window.location.href = "itemOrder.php";
                             },
                             error: function (data)
                             {
@@ -88,7 +90,6 @@
                 $('#searchResults').html("");
                 $('#searchResults').hide();
             }
-
             function searchUpdate() {
                 var customerSearch = $('#customerSearch').val();
                 var len = customerSearch.length;
@@ -98,7 +99,6 @@
                     $('#searchResults').hide();
                     return;
                 }
-
                 $.ajax({
                     url: 'ajax/CustomerAjax.php',
                     cache: false,
@@ -116,12 +116,8 @@
                         for (i = 0; i < data.dataResult.length; i++) {
                             outputData = outputData + "<tr> <td style='width:100%;' onclick='completeCustomer(\"" + data.dataResult[i].CustomerName + "\", \"" + data.dataResult[i].CustomerId + "\")' >" + "<p class='searchText'>" + data.dataResult[i].CustomerName + "</p>" + "</td> </tr>";
                         }
-                        //alert(data.dataResult[0].CustomerName);
-                        //document.location.reload();
-
                         outputData = outputData + "</table>";
                         $('#searchResults').html(outputData);
-
                     },
                     error: function (data)
                     {
@@ -129,47 +125,33 @@
                     }
                 });
             }
-
-
-
         </script>
-
         <style>
-
-
             .homeHeader {
                 width: 75%;
                 margin: 0 auto;
                 margin-top: 25px;
             }
-
             .video-center {
                 width: 560px; /* you have to have a size or this method doesn't work */
                 height: 315px; /* think about making these max-width instead - might give you some more responsiveness */
-
                 position: relative; /* positions out of the flow, but according to the nearest parent */
                 top: 0; right: 0; /* confuse it i guess */
                 bottom: 0; left: 0;
                 margin: auto; /* make em equal */
             }
-
             .mag {
                 width:250px;
                 margin: 0 auto;
                 float: none;
             } 
-
             .mag img {
                 max-width: 100%;
             }
-
-
-
             .magnify {
                 position: relative;
                 cursor: none
             }
-
             .magnify-large {
                 position: absolute;
                 display: none;
@@ -184,7 +166,6 @@
                 -moz-border-radius: 100%;
                 border-radius: 100%
             }
-
             .navbar-brand {
                 padding: 0px;
             }
@@ -193,46 +174,30 @@
                 padding: 2px;
                 width: auto;
             }
-
-
             #studentTable{
                 width: 100%;
                 font-size:17px;
                 color: black;
                 border-collapse: collapse;
-
                 box-shadow:
                     -1px -1px 10px rgba(0, 0, 0, 0.2),  
                     1px -1px 10px rgba(0, 0, 0, 0.2),
                     -1px 1px 10px rgba(0, 0, 0, 0.2),
                     1px 1px 10px rgba(0, 0, 0, 0.2);
-
-
             }
-
             td#fmt {
                 border: 1px solid black;
                 padding: 3px;
                 margin: 0;
                 cell-padding: 0px;
             }
-            
             .searchText {
                 text-align: center !important;
                 font-size: 14px !important;
             }
-
         </style>
     </head>
-
-
-
-
     <body>
-        <?php
-//        include_once 'include/menu.php';
-        ?>
-
         <div class="menubar">
             <nav class="navbar navbar-inverse navbar-static-top" style="margin-bottom:0px;">
                 <div class="container">
@@ -260,8 +225,6 @@
                 <!--/.container-fluid -->
             </nav>
         </div>
-
-
         <div class="jumbotron" style="margin-bottom:0px; background-image: url('images/dark_geometric.png');">
             <div class='homeHeader' style="margin-top:10px;">
                 <div class="alert alert-info alert-dismissible" role="alert">
@@ -271,38 +234,13 @@
                     <strong>Notice:</strong> This site is still under development! Some features may not work as expected.
 
                 </div>
-
-
-
-
-
-
-                <!--                <hr style="border-color: #999999;">-->
-                <!--                <div style="margin: 0 auto; width: 80%;position: absolute;">
-                                <div class="container">
-                                    <div class="col-md-4">
-                                        <img src="images/RecordingStudio1.jpg" width='200px;' style='border-radius: 5px;'>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <img src="images/RecordingStudio2.jpg" width='200px;' style='border-radius: 5px;'>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <img src="images/RecordingStudio3.jpg" width='200px;' style='border-radius: 5px;'>
-                                    </div>
-                                    
-                                </div>
-                                </div>-->
                 <br>
-
                 <div style="margin:0 auto;text-align: center;">
                     <p style="color:white;">Store Location:</p>
                     <input  onkeyup="searchUpdate();"id="customerSearch" type="text"placeholder="Please enter the location of the store..."size="50">
                 </div>
-
                 <div id="searchResults" style="background-color: whitesmoke; text-align: center; margin: auto; border-radius: 2px; width: 250px; padding: 5px;display:none;">
-
                 </div>
-
                 <div style="margin:0 auto;margin-top: 5px;text-align: center;">
                     <p style="color:white;">Due Date:</p>
                     <input type="text" id="datepicker" placeholder="Enter date the item is due..."size="50">
@@ -322,11 +260,7 @@
                 <div style="margin:0 auto;margin-top: 35px;text-align: center;">
                     <input type="button" id="SubmitButton" value="Continue" onclick="getIdAndSubmit()">
                 </div>
-
-
-
             </div>
-
         </div>
         <div class="jumbotron" style="background-image: url('images/grey_wash_wall.png'); margin-bottom:0px;">
             <div class='homeHeader' style='margin-top:5px;'>
@@ -336,11 +270,7 @@
                         <p><img src='images/HomeIcon.png' width="20px">  Monster Energy Company, 1 Monster Way, Corona, CA, 92879, USA</p>
                         <p><img src='images/PhoneIcon.png' width="20px">  855-488-1212</p>
                         <p><img src='images/EnvelopeIcon.png' width="20px"></span>  info@monsterenergy.com</p>
-
                     </div>
-
-
-
                 </div> 
             </div>
     </body>
